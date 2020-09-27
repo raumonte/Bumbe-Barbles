@@ -27,18 +27,26 @@ public class DamageController : MonoBehaviour
         //if attacking (dashed)
         if (stats.isAttacking)
         {
-            // Calculate damage.
+            if (otherCharacterStats.state == CharacterStats.playerState.pumpkinForm)
+            {
+                Destroy(otherCharacterStats.gameObject);
+            }
+
             otherCharacterStats.currentHealth -= transform.localScale.x * gameObject.GetComponent<Rigidbody>().velocity.magnitude * Mathf.Clamp(Vector3.Dot(collision.gameObject.GetComponent<Rigidbody>().velocity, gameObject.GetComponent<Rigidbody>().velocity), 0, 1);
-            //check if you break their marble
-            if(otherCharacterStats.currentHealth < 0)
+            if (otherCharacterStats.currentHealth < 0 && stats.state == CharacterStats.playerState.MarbleForm)
             {
                 otherCharacterStats.ChangeState(CharacterStats.playerState.pumpkinForm);
             }
             //if the other is attacking too
-            if(otherCharacterStats.isAttacking)
+            if (otherCharacterStats.isAttacking)
             {
+                if(stats.state == CharacterStats.playerState.pumpkinForm)
+                {
+                    Destroy(this.gameObject);
+                }
+
                 stats.currentHealth -= transform.localScale.x * gameObject.GetComponent<Rigidbody>().velocity.magnitude * Mathf.Clamp(Vector3.Dot(collision.gameObject.GetComponent<Rigidbody>().velocity, gameObject.GetComponent<Rigidbody>().velocity), 0, 1);
-                if (stats.currentHealth < 0)
+                if (stats.currentHealth < 0 && stats.state == CharacterStats.playerState.MarbleForm)
                 {
                     stats.ChangeState(CharacterStats.playerState.pumpkinForm);
                 }

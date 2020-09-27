@@ -49,6 +49,8 @@ public class CharacterStats : MonoBehaviour
         rgbd.drag = drag;
         rgbd.mass = mass;
         state = playerState.MarbleForm;
+
+        GameManager.instance.currentPlayers.Add(this);
     }
 
     private void Update()
@@ -62,7 +64,7 @@ public class CharacterStats : MonoBehaviour
         {
             marbleTimer -= Time.deltaTime;
         }
-
+        //keep track of states
         if (state == playerState.pumpkinForm)
             //keep track of the state that's its in
             switch (state)
@@ -75,6 +77,7 @@ public class CharacterStats : MonoBehaviour
                     break;
 
             }
+        
     }
 
     public void ChangeState(playerState changedState)
@@ -84,6 +87,15 @@ public class CharacterStats : MonoBehaviour
         {
             marbleTimer = outOfMarbleTime;
         }
+        else
+        {
+            currentHealth = startingHealth;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.currentPlayers.Remove(this);
     }
 
 }

@@ -25,11 +25,8 @@ public class GameManager : MonoBehaviour
     public GameObject startScreen;
     public GameObject endScreen;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        currentGameState = GameState.StartScreen;
-        //set the instance gamemanager to this one
         if (instance == null)
         {
             instance = this;
@@ -39,6 +36,13 @@ public class GameManager : MonoBehaviour
             Destroy(instance.gameObject);
             instance = this;
         }
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        currentGameState = GameState.StartScreen;
+        //set the instance gamemanager to this one
+        
     }
 
     // Update is called once per frame
@@ -50,7 +54,7 @@ public class GameManager : MonoBehaviour
             startScreen.SetActive(false);
             endScreen.SetActive(false);
             //if there is less than 2 players
-            if (currentPlayers.Count < 2)
+            if (currentPlayers.Count== 1)
             {
                 currentGameState = GameState.EndScreen;
             }

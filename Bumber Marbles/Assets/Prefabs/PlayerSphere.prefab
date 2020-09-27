@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53da64b1238a1cd4d9178dadcd6746c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballTorque: 100
-  dashForce: 100
+  ballTorque: 500
+  dashForce: 1000
   drag: 1
   mass: 1
   startingHealth: 100
@@ -147,6 +147,10 @@ MonoBehaviour:
   isAttacking: 0
   attackTime: 0
   playerNumber: 1
+  state: 0
+  outOfMarbleTime: 3
+  marble: {fileID: 0}
+  pumpkin: {fileID: 0}
 --- !u!114 &1414029629104333938
 MonoBehaviour:
   m_ObjectHideFlags: 0
