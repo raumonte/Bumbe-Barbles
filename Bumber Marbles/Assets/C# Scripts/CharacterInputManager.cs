@@ -10,7 +10,7 @@ using UnityEngine;
 public class CharacterInputManager : MonoBehaviour
 {
     //dash stuff
-     bool canDash
+    bool canDash
     {
         get
         {
@@ -49,7 +49,7 @@ public class CharacterInputManager : MonoBehaviour
         rigidbody.drag = stats.drag;
         rigidbody.mass = stats.mass;
 
-        if (Input.IsJoystickPreconfigured(Input.GetJoystickNames()[stats.playerNumber -1]))
+        if (Input.IsJoystickPreconfigured(Input.GetJoystickNames()[stats.playerNumber - 1]))
         {
             Debug.Log("This player has this joy stick assigned already" + Input.GetJoystickNames()[stats.playerNumber - 1]);
         }
@@ -68,14 +68,16 @@ public class CharacterInputManager : MonoBehaviour
 
         //keep track of vertical and horizontal inputs 
         //(values range from [-1, 1]. For example, S in WASD will return a -1, W would return the opposite)
-        horizontalInput = Input.GetAxis("Horizontal"+stats.playerNumber);
+        horizontalInput = Input.GetAxis("Horizontal" + stats.playerNumber);
         verticalInput = Input.GetAxis("Vertical" + stats.playerNumber);
+
 
         //apply's torque to the ball based on inputs
         rigidbody.AddTorque(new Vector3(verticalInput, 0, -horizontalInput) * stats.ballTorque * Time.deltaTime);
 
+
         //if player presses the space bar
-        if(Input.GetButton("Fire"+stats.playerNumber))
+        if (Input.GetButton("Fire" + stats.playerNumber))
         {
             Debug.Log("This is the player" + stats.playerNumber + " controller");
             //if the dash timer = 0
@@ -87,6 +89,11 @@ public class CharacterInputManager : MonoBehaviour
                 rigidbody.AddForce(new Vector3(horizontalInput, 0, verticalInput) * stats.dashForce);
                 dashTimer = stats.dashCooldownTime;
             }
+        }
+
+        if(attackTimer < 0)
+        {
+            stats.isAttacking = false;
         }
     }
 }

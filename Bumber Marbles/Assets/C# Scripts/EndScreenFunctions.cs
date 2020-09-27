@@ -8,7 +8,7 @@ public class EndScreenFunctions : MonoBehaviour
     public Text titleText;
     private void OnEnable()
     {
-        titleText.text += GameManager.instance.currentPlayers[0].gameObject.name + " Wins!";
+        titleText.text = GameManager.instance.winner + " Wins!";
     }
     public void OnRestartClick()
     {

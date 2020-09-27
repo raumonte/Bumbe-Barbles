@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public List<PickupSpawner> pickupSpawns = new List<PickupSpawner>();
     [Tooltip("Current list of player spawners")]
     public List<PlayerSpawner> playerSpawners = new List<PlayerSpawner>();
+    public string winner;
 
     [Header("UI Holders:")]
     public GameObject startScreen;
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
             //if there is less than 2 players
             if (currentPlayers.Count== 1)
             {
+                winner = currentPlayers[0].transform.parent.name;
                 currentGameState = GameState.EndScreen;
             }
         }
