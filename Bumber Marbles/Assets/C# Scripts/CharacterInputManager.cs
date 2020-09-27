@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 //ensure that the gameobject being set to has the needed components (if it doesn't, it'll add one)
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CharacterStats))]
@@ -17,6 +18,7 @@ public class CharacterInputManager : MonoBehaviour
         }
     }
     private float dashTimer;
+    float attackTimer;
 
     //needed components
     private Rigidbody rigidbody;
@@ -46,6 +48,11 @@ public class CharacterInputManager : MonoBehaviour
         //set ball physic stats
         rigidbody.drag = stats.drag;
         rigidbody.mass = stats.mass;
+
+        if (Input.IsJoystickPreconfigured(Input.GetJoystickNames()[stats.playerNumber -1]))
+        {
+            Debug.Log("This player has this joy stick assigned already" + Input.GetJoystickNames()[stats.playerNumber - 1]);
+        }
     }
 
     // Update is called once per frame
@@ -53,6 +60,7 @@ public class CharacterInputManager : MonoBehaviour
     {
         // count down timers
         dashTimer -= Time.deltaTime;
+        attackTimer -= Time.deltaTime;
 
         //keep track of current speed
         currentSpeed = (transform.position - lastposition).magnitude / Time.deltaTime;
@@ -73,6 +81,8 @@ public class CharacterInputManager : MonoBehaviour
             //if the dash timer = 0
             if (canDash)
             {
+                stats.isAttacking = true;
+                attackTimer = stats.attackTime;
                 //dash and reset timer
                 rigidbody.AddForce(new Vector3(horizontalInput, 0, verticalInput) * stats.dashForce);
                 dashTimer = stats.dashCooldownTime;

@@ -306,6 +306,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerSphere (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1186170594768497091, guid: 381aa3c5d04dd514198babf3bab55865,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1186170594768497097, guid: 381aa3c5d04dd514198babf3bab55865,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -375,6 +380,16 @@ PrefabInstance:
         type: 3}
       propertyPath: ballTorque
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864157449753636919, guid: 381aa3c5d04dd514198babf3bab55865,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813985496398146334, guid: 381aa3c5d04dd514198babf3bab55865,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 381aa3c5d04dd514198babf3bab55865, type: 3}
@@ -547,6 +562,21 @@ PrefabInstance:
         type: 3}
       propertyPath: ballTorque
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186170594768497100, guid: 381aa3c5d04dd514198babf3bab55865,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864157449753636919, guid: 381aa3c5d04dd514198babf3bab55865,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813985496398146334, guid: 381aa3c5d04dd514198babf3bab55865,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 381aa3c5d04dd514198babf3bab55865, type: 3}
