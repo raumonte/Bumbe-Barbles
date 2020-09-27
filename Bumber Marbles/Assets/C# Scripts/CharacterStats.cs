@@ -37,10 +37,12 @@ public class CharacterStats : MonoBehaviour
     [Tooltip("The time in seconds when the player is out of the marble")]
     public float outOfMarbleTime;
     float marbleTimer;
-    public Material[] colors = new Material[4];
+    public Color[] colors = new Color[4];
     [Header("Player Components:")]
     public GameObject marble;
     public GameObject pumpkin;
+    public List<Material> marblePhasesMaterials = new List<Material>();
+    private MeshRenderer meshRenderer;
 
     Rigidbody rgbd;
     // Start is called before the first frame update
@@ -54,6 +56,8 @@ public class CharacterStats : MonoBehaviour
         state = playerState.MarbleForm;
 
         GameManager.instance.currentPlayers.Add(this);
+        meshRenderer = marble.GetComponent<MeshRenderer>();
+        meshRenderer.material.SetColor("_Color", colors[playerNumber-1]);
     }
 
     private void Update()
@@ -67,8 +71,7 @@ public class CharacterStats : MonoBehaviour
         {
             marbleTimer -= Time.deltaTime;
         }
-        //keep track of states
-        if (state == playerState.pumpkinForm)
+        
             //keep track of the state that's its in
             switch (state)
             {
@@ -80,7 +83,27 @@ public class CharacterStats : MonoBehaviour
                     break;
 
             }
-        
+        //keep track of marble phases
+        if((currentHealth/startingHealth) >= .99)
+        {
+            meshRenderer.material = marblePhasesMaterials[0];
+            meshRenderer.material.SetColor("_Color", colors[playerNumber - 1]);
+        }
+        else if((currentHealth / startingHealth) < .99 && (currentHealth / startingHealth) >= .66)
+        {
+            meshRenderer.material = marblePhasesMaterials[1];
+            meshRenderer.material.SetColor("_Color", colors[playerNumber - 1]);
+        }
+        else if ((currentHealth / startingHealth) < .66 && (currentHealth / startingHealth) >= .33)
+        {
+            meshRenderer.material = marblePhasesMaterials[2];
+            meshRenderer.material.SetColor("_Color", colors[playerNumber - 1]);
+        }
+        else if ((currentHealth / startingHealth) < .33 && (currentHealth / startingHealth) >= 0)
+        {
+            meshRenderer.material = marblePhasesMaterials[3];
+            meshRenderer.material.SetColor("_Color", colors[playerNumber - 1]);
+        }
     }
 
     public void ChangeState(playerState changedState)
@@ -92,6 +115,7 @@ public class CharacterStats : MonoBehaviour
         }
         else
         {
+
             currentHealth = startingHealth;
         }
     }
