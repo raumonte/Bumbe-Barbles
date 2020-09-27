@@ -4,21 +4,22 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [HideInInspector]
-    public GameManager instance;
-    public enum GameState {StartScreen, GameRunning, EndScren};
+
+    public static GameManager instance;
+    public enum GameState { StartScreen, GameRunning, EndScreen };
     [Header("Game Stats")]
-    public int startingNumOfPlayers = 4;
+    public GameObject playerPreb;
+    public int startingNumOfPlayers = 2;
     [Tooltip("Current state the game is in")]
     public GameState currentGameState = GameState.StartScreen;
     [Tooltip("List of Current players")]
-    List<CharacterStats> currentPlayers = new List<CharacterStats>();
+    public List<CharacterStats> currentPlayers = new List<CharacterStats>();
     [Tooltip("list of current powerups on the field")]
-    List<Pickup> currentPowerups = new List<Pickup>();
+    public List<Pickup> currentPowerups = new List<Pickup>();
     [Tooltip("current pickup spawners")]
-    List<PickupSpawner> pickupSpawns = new List<PickupSpawner>();
+    public List<PickupSpawner> pickupSpawns = new List<PickupSpawner>();
     [Tooltip("Current list of player spawners")]
-    List<PlayerSpawner> playerSpawners = new List<PlayerSpawner>();
+    public List<PlayerSpawner> playerSpawners = new List<PlayerSpawner>();
 
     [Header("UI Holders:")]
     public GameObject startScreen;
@@ -27,8 +28,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentGameState = GameState.StartScreen;
         //set the instance gamemanager to this one
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -42,15 +44,28 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       //while the game is in the game running state
-       if(currentGameState == GameState.GameRunning)
+        //while the game is in the game running state
+        if (currentGameState == GameState.GameRunning)
         {
+            startScreen.SetActive(false);
+            endScreen.SetActive(false);
             //if there is less than 2 players
-            if(currentPlayers.Count < 2)
+            if (currentPlayers.Count < 2)
             {
-                currentGameState = GameState.EndScren;
+                currentGameState = GameState.EndScreen;
             }
         }
+        else if (currentGameState == GameState.StartScreen)
+        {
+            startScreen.SetActive(true);
+            endScreen.SetActive(false);
+        }
+        else
+        {
+            startScreen.SetActive(false);
+            endScreen.SetActive(true);
+        }
+
     }
 
 }

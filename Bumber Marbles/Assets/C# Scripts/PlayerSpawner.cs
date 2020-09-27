@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Spawns player at spawn point
+    /// </summary>
+    /// <param name="playerPrefab">prefab to spawn</param>
+    /// <param name="playerNum">Player num</param>
+  public void SpawnPlayer(GameObject playerPrefab, int playerNum)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameObject spawnedPlayer = Instantiate(playerPrefab, transform.position, transform.rotation);
+        spawnedPlayer.GetComponent<CharacterStats>().playerNumber = playerNum;
+        spawnedPlayer.name = "Player " + playerNum;
     }
 }
