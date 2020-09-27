@@ -9,6 +9,8 @@ public class CharacterStats : MonoBehaviour
     public float ballTorque = 100;
     [Tooltip("The amount of force applied to the ball when dashing")]
     public float dashForce = 100;
+    [Tooltip("Movement speed of the pumpkin")]
+    public float pumpkinMoveSpeed;
 
     [Header("Ball Physics Settings:")]
     [Tooltip("The amount of drag applied to the ball to help it stop moving. 0 - infinity")]
@@ -35,6 +37,7 @@ public class CharacterStats : MonoBehaviour
     [Tooltip("The time in seconds when the player is out of the marble")]
     public float outOfMarbleTime;
     float marbleTimer;
+    public Material[] colors = new Material[4];
     [Header("Player Components:")]
     public GameObject marble;
     public GameObject pumpkin;
