@@ -32,7 +32,7 @@ public class DamageController : MonoBehaviour
                 Destroy(otherCharacterStats.gameObject);
             }
 
-            otherCharacterStats.currentHealth -= transform.localScale.x * gameObject.GetComponent<Rigidbody>().velocity.magnitude * Mathf.Clamp(Vector3.Dot(collision.gameObject.GetComponent<Rigidbody>().velocity, gameObject.GetComponent<Rigidbody>().velocity), 0, 1);
+            otherCharacterStats.currentHealth -= otherCharacterStats.mass * gameObject.GetComponent<Rigidbody>().velocity.magnitude * Mathf.Clamp(Vector3.Dot(collision.gameObject.GetComponent<Rigidbody>().velocity, gameObject.GetComponent<Rigidbody>().velocity), 0, 1);
             if (otherCharacterStats.currentHealth < 0 && stats.state == CharacterStats.playerState.MarbleForm)
             {
                 otherCharacterStats.ChangeState(CharacterStats.playerState.pumpkinForm);
@@ -45,7 +45,7 @@ public class DamageController : MonoBehaviour
                     Destroy(this.gameObject);
                 }
 
-                stats.currentHealth -= transform.localScale.x * gameObject.GetComponent<Rigidbody>().velocity.magnitude * Mathf.Clamp(Vector3.Dot(collision.gameObject.GetComponent<Rigidbody>().velocity, gameObject.GetComponent<Rigidbody>().velocity), 0, 1);
+                stats.currentHealth -= stats.mass * gameObject.GetComponent<Rigidbody>().velocity.magnitude * Mathf.Clamp(Vector3.Dot(collision.gameObject.GetComponent<Rigidbody>().velocity, gameObject.GetComponent<Rigidbody>().velocity), 0, 1);
                 if (stats.currentHealth < 0 && stats.state == CharacterStats.playerState.MarbleForm)
                 {
                     stats.ChangeState(CharacterStats.playerState.pumpkinForm);
