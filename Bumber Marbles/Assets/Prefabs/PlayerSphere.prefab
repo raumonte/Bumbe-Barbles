@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 1186170594768497101}
   - component: {fileID: 1186170594768497090}
   - component: {fileID: 1186170594768497096}
-  m_Layer: 0
+  - component: {fileID: 1414029629104333938}
+  m_Layer: 8
   m_Name: PlayerSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,11 +136,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53da64b1238a1cd4d9178dadcd6746c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballTorque: 100
-  dashForce: 100
+  ballTorque: 500
+  dashForce: 1000
   drag: 1
   mass: 1
   startingHealth: 100
   currentHealth: 0
   score: 0
   dashCooldownTime: 1
+  isAttacking: 0
+  attackTime: 0
+  playerNumber: 1
+  state: 0
+  outOfMarbleTime: 3
+  marble: {fileID: 0}
+  pumpkin: {fileID: 0}
+--- !u!114 &1414029629104333938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1186170594768497091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d85a0ccba29a9de45a41b5cba8765957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugObject: {fileID: 0}
