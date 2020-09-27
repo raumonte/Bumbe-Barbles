@@ -25,6 +25,7 @@ public class CharacterStats : MonoBehaviour
     public float score;
     [Tooltip("The time in seconds between dashes")]
     public float dashCooldownTime = 1;
+    public int playerNumber = 1;
     // Start is called before the first frame update
     void Start()
     {

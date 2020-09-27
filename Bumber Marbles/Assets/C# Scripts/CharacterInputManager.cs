@@ -60,15 +60,16 @@ public class CharacterInputManager : MonoBehaviour
 
         //keep track of vertical and horizontal inputs 
         //(values range from [-1, 1]. For example, S in WASD will return a -1, W would return the opposite)
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal"+stats.playerNumber);
+        verticalInput = Input.GetAxis("Vertical" + stats.playerNumber);
 
         //apply's torque to the ball based on inputs
         rigidbody.AddTorque(new Vector3(verticalInput, 0, -horizontalInput) * stats.ballTorque * Time.deltaTime);
 
         //if player presses the space bar
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetButton("Fire"+stats.playerNumber))
         {
+            Debug.Log("This is the player" + stats.playerNumber + " controller");
             //if the dash timer = 0
             if (canDash)
             {
