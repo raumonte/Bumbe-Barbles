@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8074356780173520377}
   - component: {fileID: 6434478549270076373}
+  - component: {fileID: 7324037144553282810}
   m_Layer: 0
   m_Name: Pickup Spawner
   m_TagString: Untagged
@@ -47,6 +48,23 @@ MonoBehaviour:
   pickupPrefabs: []
   currentPickup: {fileID: 5650824922836688350, guid: 8c30835e5c3c1244490ca73dda8a1e9d,
     type: 3}
+  spawnTime: 1
+--- !u!114 &7324037144553282810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1233448369784262589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e033e3dff5747b4ab3aa6592be7c0ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupPrefabs:
+  - {fileID: 5741885238618790960, guid: 2e69527acf4b6b94cb61dc2748df33ed, type: 3}
+  - {fileID: 3082769889403999353, guid: a8f535d774b123e449a09ea761112bb2, type: 3}
+  currentPickup: {fileID: 0}
   spawnTime: 0
 --- !u!1 &3137396714794424477
 GameObject:

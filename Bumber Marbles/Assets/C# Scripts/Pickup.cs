@@ -7,14 +7,17 @@ public class Pickup : MonoBehaviour
     //public enum powerUps { healthRegen, doubleSpeed, meteor, intangibility}
     public PowerUp powerUp;
     public float duration = 5f;
+    private Transform camera;
     private void Start()
     {
       //  powerUp = powerUps.healthRegen;
         GameManager.instance.currentPowerups.Add(this);
+        camera = MultiTargetCam.instance.transform;
+
     }
     private void Update()
     {
-        
+        transform.LookAt(camera, Vector3.up);
     }
     private void OnCollisionEnter(Collision collision)
     {

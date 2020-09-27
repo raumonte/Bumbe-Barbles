@@ -20,7 +20,7 @@ public class PickupSpawner : MonoBehaviour
     {
         if(currentPickup == null)
         {
-            if(spawnTimer > Time.time)
+            if(spawnTimer < Time.time)
             {
                 SpawnPowerUp();
                 spawnTimer = Time.time + spawnTime;
@@ -34,6 +34,7 @@ public class PickupSpawner : MonoBehaviour
 
     public void SpawnPowerUp()
     {
-        currentPickup = Instantiate(pickupPrefabs[Random.Range(0, pickupPrefabs.Count-1)], this.transform.position, this.transform.rotation);
+        
+        currentPickup = Instantiate(pickupPrefabs[UnityEngine.Random.Range(0, pickupPrefabs.Count)], new Vector3((this.transform.position.x + 6.7f), 4.43f, (this.transform.position.z - 11.1f)), this.transform.rotation);
     }
 }

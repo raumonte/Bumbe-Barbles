@@ -58,6 +58,8 @@ public class CharacterStats : MonoBehaviour
         GameManager.instance.currentPlayers.Add(this);
         meshRenderer = marble.GetComponent<MeshRenderer>();
         meshRenderer.material.SetColor("_Color", colors[playerNumber-1]);
+
+        MultiTargetCam.instance.targets.Add(this.transform);
     }
 
     private void Update()
