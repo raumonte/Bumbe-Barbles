@@ -4,26 +4,30 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    public enum powerUp { healthRegen, doubleSpeed, meteor, intangibility}
-    public powerUp selectedPowerUp;
+    //public enum powerUps { healthRegen, doubleSpeed, meteor, intangibility}
+    public PowerUp powerUp;
+    public float duration = 5f;
     private void Start()
     {
-        selectedPowerUp = powerUp.healthRegen;
+      //  powerUp = powerUps.healthRegen;
+        GameManager.instance.currentPowerups.Add(this);
+    }
+    private void Update()
+    {
+        
     }
     private void OnCollisionEnter(Collision collision)
     {
-        // Check if the player is big enough to pick the object up.
-        if (collision.transform.localScale.x > transform.localScale.x)
+        Vector3 origin = new Vector3(0, 0, 0);
+        PowerUpController powerUpController = collision.gameObject.GetComponent<PowerUpController>();
+        if (powerUpController != null)
         {
-            OnPickup(collision.gameObject);
-            Destroy(gameObject);
+            powerUpController.AddPowerup(powerUp);
+            Destroy(this.gameObject);
         }
     }
-
-    // Called when someone picks up this item.
-    protected virtual void OnPickup(GameObject player)
+    void OnDestroy()
     {
-        // Do the thing.
-
+        GameManager.instance.currentPowerups.Remove(this);
     }
 }
