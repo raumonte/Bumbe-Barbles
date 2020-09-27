@@ -16,7 +16,7 @@ public class PlayerSpawner : MonoBehaviour
     public void SpawnPlayer(GameObject playerPrefab, int playerNum)
     {
         GameObject spawnedPlayer = Instantiate(playerPrefab, transform.position, transform.rotation);
-        spawnedPlayer.transform.FindChild("Player_visuals").GetComponent<CharacterStats>().playerNumber = playerNum;
+        spawnedPlayer.transform.Find("Player_visuals").GetComponent<CharacterStats>().playerNumber = playerNum;
         spawnedPlayer.name = "Player " + playerNum;
     }
 }

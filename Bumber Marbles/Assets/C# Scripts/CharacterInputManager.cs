@@ -21,7 +21,7 @@ public class CharacterInputManager : MonoBehaviour
     float attackTimer;
 
     //needed components
-    private Rigidbody rigidbody;
+    private Rigidbody rBody;
     private CharacterStats stats;
 
     //physics variables
@@ -36,7 +36,7 @@ public class CharacterInputManager : MonoBehaviour
     void Start()
     {
         //grab the needed component from the game object
-        rigidbody = this.GetComponent<Rigidbody>();
+        rBody = this.GetComponent<Rigidbody>();
         stats = this.GetComponent<CharacterStats>();
 
         //set last postion to start position
@@ -46,13 +46,10 @@ public class CharacterInputManager : MonoBehaviour
         dashTimer = stats.dashCooldownTime;
 
         //set ball physic stats
-        rigidbody.drag = stats.drag;
-        rigidbody.mass = stats.mass;
+        rBody.drag = stats.drag;
+        rBody.mass = stats.mass;
 
-        if (Input.IsJoystickPreconfigured(Input.GetJoystickNames()[stats.playerNumber - 1]))
-        {
-            Debug.Log("This player has this joy stick assigned already" + Input.GetJoystickNames()[stats.playerNumber - 1]);
-        }
+       
     }
 
     // Update is called once per frame
@@ -73,7 +70,7 @@ public class CharacterInputManager : MonoBehaviour
 
 
         //apply's torque to the ball based on inputs
-        rigidbody.AddTorque(new Vector3(verticalInput * stats.ballTorque, 0, -horizontalInput * stats.ballTorque)  * Time.deltaTime);
+        rBody.AddTorque(new Vector3(verticalInput * stats.ballTorque, 0, -horizontalInput * stats.ballTorque)  * Time.deltaTime);
 
 
         //if player presses the space bar
@@ -86,7 +83,7 @@ public class CharacterInputManager : MonoBehaviour
                 stats.isAttacking = true;
                 attackTimer = stats.attackTime;
                 //dash and reset timer
-                rigidbody.AddForce(new Vector3(horizontalInput, 0, verticalInput) * stats.dashForce);
+                rBody.AddForce(new Vector3(horizontalInput, 0, verticalInput) * stats.dashForce);
                 dashTimer = stats.dashCooldownTime;
             }
         }
