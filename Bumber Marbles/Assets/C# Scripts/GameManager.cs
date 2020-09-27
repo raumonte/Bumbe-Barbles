@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
             //if there is less than 2 players
             if (currentPlayers.Count== 1)
             {
-                winner = currentPlayers[0].gameObject.name;
+                winner = currentPlayers[0].transform.parent.name;
                 currentGameState = GameState.EndScreen;
             }
         }

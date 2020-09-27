@@ -90,5 +90,10 @@ public class CharacterInputManager : MonoBehaviour
                 dashTimer = stats.dashCooldownTime;
             }
         }
+
+        if(attackTimer < 0)
+        {
+            stats.isAttacking = false;
+        }
     }
 }
