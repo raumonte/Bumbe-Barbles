@@ -44,6 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e033e3dff5747b4ab3aa6592be7c0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupPrefabs: []
+  currentPickup: {fileID: 5650824922836688350, guid: 8c30835e5c3c1244490ca73dda8a1e9d,
+    type: 3}
+  spawnTime: 0
 --- !u!1 &3137396714794424477
 GameObject:
   m_ObjectHideFlags: 0

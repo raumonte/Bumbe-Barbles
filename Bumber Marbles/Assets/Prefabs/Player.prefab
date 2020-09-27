@@ -205,7 +205,7 @@ PrefabInstance:
     - target: {fileID: 4515711805291733965, guid: 7467950e0c31c9c4cae568ca453f0a3d,
         type: 3}
       propertyPath: ballTorque
-      value: 1600
+      value: 6400
       objectReference: {fileID: 0}
     - target: {fileID: 4515711805291733965, guid: 7467950e0c31c9c4cae568ca453f0a3d,
         type: 3}
@@ -320,7 +320,7 @@ PrefabInstance:
     - target: {fileID: 4515711805291733965, guid: 7467950e0c31c9c4cae568ca453f0a3d,
         type: 3}
       propertyPath: drag
-      value: 0.8
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4515711805291733965, guid: 7467950e0c31c9c4cae568ca453f0a3d,
         type: 3}
