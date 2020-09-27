@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!135 &5225053879565165367
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581353518596029038}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.0000001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7409535963293211673
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +119,7 @@ GameObject:
   - component: {fileID: 2134364785864706110}
   - component: {fileID: 8545177225353970172}
   m_Layer: 0
-  m_Name: Player_Art
+  m_Name: Player_visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,6 +216,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7409535964832601833}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 2dc8aa5da6ad1e64ebd47c41045444ce,
+        type: 3}
+      propertyPath: m_Name
+      value: MESH_Marble_LMB
+      objectReference: {fileID: 0}
+    - target: {fileID: -1161032780092873966, guid: 2dc8aa5da6ad1e64ebd47c41045444ce,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2dc8aa5da6ad1e64ebd47c41045444ce,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -258,11 +281,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 2dc8aa5da6ad1e64ebd47c41045444ce,
+    - target: {fileID: -1504981713932161579, guid: 2dc8aa5da6ad1e64ebd47c41045444ce,
         type: 3}
-      propertyPath: m_Name
-      value: MESH_Marble_LMB
-      objectReference: {fileID: 0}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2c49ce79be55cce4abbffd710d4e70c6, type: 2}
     - target: {fileID: -4384575284288474243, guid: 2dc8aa5da6ad1e64ebd47c41045444ce,
         type: 3}
       propertyPath: m_LocalRotation.y
@@ -297,16 +320,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: -1504981713932161579, guid: 2dc8aa5da6ad1e64ebd47c41045444ce,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 2c49ce79be55cce4abbffd710d4e70c6, type: 2}
-    - target: {fileID: -1161032780092873966, guid: 2dc8aa5da6ad1e64ebd47c41045444ce,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3953886558961446805, guid: 2dc8aa5da6ad1e64ebd47c41045444ce,
         type: 3}
