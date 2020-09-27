@@ -10,19 +10,9 @@ public class ButtonManager : MonoBehaviour
         Application.Quit();
         Debug.Log("Exits");
     }
+    //The scene manager gets the current active scene and adds one to go into the next scene in the scene index.
     public void NextScene()
     {
-        //SceneManager.LoadScene(sceneBuildIndex + 1);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
