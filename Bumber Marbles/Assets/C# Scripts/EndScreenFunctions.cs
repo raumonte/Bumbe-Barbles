@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EndScreenFunctions : MonoBehaviour
 {
-    public Text titleText;
+    public TextMeshProUGUI titleText;
     private void OnEnable()
     {
         titleText.text = GameManager.instance.winner + " Wins!";
