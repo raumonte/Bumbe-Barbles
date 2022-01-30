@@ -11,7 +11,7 @@ public class PickupSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.instance.pickupSpawns.Add(this);
+        MatchManager.instance.pickupSpawners.Add(this);
         spawnTimer = Time.time + spawnTime;
     }
 

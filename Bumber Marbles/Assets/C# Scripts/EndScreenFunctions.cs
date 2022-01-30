@@ -12,26 +12,7 @@ public class EndScreenFunctions : MonoBehaviour
     }
     public void OnRestartClick()
     {
-        //clear everthing
-        foreach (Pickup pickup in GameManager.instance.currentPowerups)
-        {
-            Destroy(pickup.gameObject);
-            GameManager.instance.currentPowerups.Remove(pickup);
-        }
-        GameManager.instance.currentPowerups.Clear();
-        foreach(CharacterStats player in GameManager.instance.currentPlayers)
-        {
-            Destroy(player.gameObject);
-            GameManager.instance.currentPlayers.Remove(player);
-        }
-        GameManager.instance.currentPlayers.Clear();
-
-        //spawn players
-        for (int i = 0; i < GameManager.instance.startingNumOfPlayers; i++)
-        {
-            GameManager.instance.playerSpawners[i].SpawnPlayer(GameManager.instance.playerPreb, i + 1);
-        }
-        GameManager.instance.currentGameState = GameManager.GameState.GameRunning;
+        SceneLoader.instance.LoadScene("MainMenu");
     }
     public void OnQuitClick()
     {

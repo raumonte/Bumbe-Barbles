@@ -13,6 +13,5 @@ public class ButtonManager : MonoBehaviour
     //The scene manager gets the current active scene and adds one to go into the next scene in the scene index.
     public void NextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

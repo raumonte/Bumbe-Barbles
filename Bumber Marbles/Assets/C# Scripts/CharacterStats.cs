@@ -55,7 +55,7 @@ public class CharacterStats : MonoBehaviour
         rgbd.mass = mass;
         state = playerState.MarbleForm;
 
-        GameManager.instance.currentPlayers.Add(this);
+        MatchManager.instance.currentPlayers.Add(this);
         meshRenderer = marble.GetComponent<MeshRenderer>();
         meshRenderer.material.SetColor("_Color", colors[playerNumber-1]);
 
@@ -124,7 +124,8 @@ public class CharacterStats : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.instance.currentPlayers.Remove(this);
+        MatchManager.instance.CheckWin();
+        MatchManager.instance.currentPlayers.Remove(this);
     }
 
 }

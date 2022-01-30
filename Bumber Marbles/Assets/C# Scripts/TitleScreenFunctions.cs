@@ -5,16 +5,14 @@ using UnityEngine.UI;
 public class TitleScreenFunctions : MonoBehaviour
 {
     public Slider playerNumSlider;
+    public string sceneToLoad;
+    
     /// <summary>
     /// starts the game
     /// </summary>
    public void OnStartClick()
     {
-        for (int i = 0; i < GameManager.instance.startingNumOfPlayers; i++)
-        {
-            GameManager.instance.playerSpawners[i].SpawnPlayer(GameManager.instance.playerPreb, i + 1);
-        }
-        GameManager.instance.currentGameState = GameManager.GameState.GameRunning;
+        SceneLoader.instance.LoadScene(sceneToLoad);
     }
     public void OnSliderChange()
     {

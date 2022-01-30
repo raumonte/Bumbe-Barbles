@@ -11,7 +11,7 @@ public class Pickup : MonoBehaviour
     private void Start()
     {
       //  powerUp = powerUps.healthRegen;
-        GameManager.instance.currentPowerups.Add(this);
+        MatchManager.instance.currentPickup.Add(this);
         kamera = MultiTargetCam.instance.transform;
 
     }
@@ -31,6 +31,6 @@ public class Pickup : MonoBehaviour
     }
     void OnDestroy()
     {
-        GameManager.instance.currentPowerups.Remove(this);
+        MatchManager.instance.currentPickup.Remove(this);
     }
 }

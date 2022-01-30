@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
-        GameManager.instance.playerSpawners.Add(this);
+
     }
     /// <summary>
     /// Spawns player at spawn point
