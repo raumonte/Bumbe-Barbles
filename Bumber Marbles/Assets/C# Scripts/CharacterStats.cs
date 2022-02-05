@@ -6,7 +6,7 @@ public class CharacterStats : MonoBehaviour
 {
     [Header("Movement Settings:")]
     [Tooltip("The amount torque applied to the ball")]
-    public float ballTorque = 100;
+    public float moveForce = 100;
     [Tooltip("The amount of force applied to the ball when dashing")]
     public float dashForce = 100;
     [Tooltip("Movement speed of the pumpkin")]
@@ -45,6 +45,8 @@ public class CharacterStats : MonoBehaviour
     private MeshRenderer meshRenderer;
 
     Rigidbody rgbd;
+
+    public Camera camera;
     // Start is called before the first frame update
     void Start()
     {
@@ -59,7 +61,7 @@ public class CharacterStats : MonoBehaviour
         meshRenderer = marble.GetComponent<MeshRenderer>();
         meshRenderer.material.SetColor("_Color", colors[playerNumber-1]);
 
-        MultiTargetCam.instance.targets.Add(this.transform);
+        CameraManager.instance.cameras.Add(camera);
     }
 
     private void Update()

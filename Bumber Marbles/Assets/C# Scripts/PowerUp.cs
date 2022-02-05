@@ -14,7 +14,7 @@ public class PowerUp : MonoBehaviour
     {
         if (powerUp == powerUpType.meteor)
         {
-            data.ballTorque *= torpueBoost;
+            //data.ballTorque *= torpueBoost;
             data.dashForce *= dashBoost;
         }
         else
@@ -26,7 +26,7 @@ public class PowerUp : MonoBehaviour
     {
         if (powerUp == powerUpType.meteor)
         {
-            data.ballTorque /= torpueBoost;
+           // data.ballTorque /= torpueBoost;
             data.dashForce /= dashBoost;
         }
         else

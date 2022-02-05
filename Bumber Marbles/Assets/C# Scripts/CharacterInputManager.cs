@@ -70,7 +70,7 @@ public class CharacterInputManager : MonoBehaviour
 
 
         //apply's torque to the ball based on inputs
-        rBody.AddTorque(new Vector3(verticalInput * stats.ballTorque, 0, -horizontalInput * stats.ballTorque)  * Time.deltaTime);
+        rBody.AddForce(new Vector3(horizontalInput, 0, verticalInput) * stats.moveForce * Time.deltaTime);
 
 
         //if player presses the space bar

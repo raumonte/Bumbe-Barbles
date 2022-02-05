@@ -10,6 +10,8 @@ public class MatchManager : MonoBehaviour
     public List<Pickup> currentPickup = new List<Pickup>();
     public List<PickupSpawner> pickupSpawners = new List<PickupSpawner>();
 
+    [SerializeField] CameraManager cameraManager;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,7 +29,10 @@ public class MatchManager : MonoBehaviour
     private void Start()
     {
         for (int i = 0; i < GameManager.instance.startingNumOfPlayers; i++)
-            playerSpawners[i].SpawnPlayer(GameManager.instance.playerPreb, i+1);
+        {
+            playerSpawners[i].SpawnPlayer(GameManager.instance.playerPreb, i + 1);
+        }
+        cameraManager.SetSplitScreen();
     }
 
     public void CheckWin()
