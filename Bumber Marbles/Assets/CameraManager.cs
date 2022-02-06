@@ -23,7 +23,7 @@ public class CameraManager : MonoBehaviour
     }
 
 
-    public void SetSplitScreen()
+    public void Update()
     {
         switch(cameras.Count)
         {
@@ -39,8 +39,8 @@ public class CameraManager : MonoBehaviour
             case 4:
                 cameras[0].rect = new Rect(0, 0.5f, 0.5f, 0.5f);
                 cameras[1].rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-                cameras[2].rect = new Rect(0f, 0, 1f, 0.5f);
-                cameras[3].rect = new Rect(0.5f, 0, 1f, 0.5f);
+                cameras[2].rect = new Rect(0f, 0, 0.5f, 0.5f);
+                cameras[3].rect = new Rect(0.5f, 0, 0.5f, 0.5f);
                 break;
         }
         

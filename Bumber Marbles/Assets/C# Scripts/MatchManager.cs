@@ -26,13 +26,17 @@ public class MatchManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
         for (int i = 0; i < GameManager.instance.startingNumOfPlayers; i++)
         {
             playerSpawners[i].SpawnPlayer(GameManager.instance.playerPreb, i + 1);
         }
-        cameraManager.SetSplitScreen();
+    }
+    private void Start()
+    {
+        
+      
     }
 
     public void CheckWin()

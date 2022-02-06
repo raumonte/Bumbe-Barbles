@@ -290,6 +290,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pickup Spawner (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6434478549270076373, guid: b432ccb76c870e14392ca05e03d0a99c,
+        type: 3}
+      propertyPath: spawnTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8074356780173520377, guid: b432ccb76c870e14392ca05e03d0a99c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -344,11 +349,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6434478549270076373, guid: b432ccb76c870e14392ca05e03d0a99c,
-        type: 3}
-      propertyPath: spawnTime
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b432ccb76c870e14392ca05e03d0a99c, type: 3}
@@ -735,6 +735,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2.8407629
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: 42b137571fb678b46a150a08bd26ab68,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3884136618e6c46488685768444f7c26, type: 2}
+    - target: {fileID: -1504981713932161579, guid: 42b137571fb678b46a150a08bd26ab68,
+        type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 93452d21996f66f46ab19ae334ad2a4f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42b137571fb678b46a150a08bd26ab68, type: 3}
 --- !u!1 &1936193290741523978 stripped
