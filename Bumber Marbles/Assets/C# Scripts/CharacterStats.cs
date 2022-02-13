@@ -5,6 +5,12 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour
 {
     [Header("Movement Settings:")]
+    public float maxSpeed = 10f;
+    public float maxAcceleration = 10f, maxAirAcceleration = 1f;
+    public float bounciness = 0.5f;
+    public float jumpHeight = 2f;
+    public float maxGroundAngle = 25f;
+    public float ballRadius = 0.5f;
     [Tooltip("The amount torque applied to the ball")]
     public float moveForce = 100;
     [Tooltip("The amount of force applied to the ball when dashing")]
