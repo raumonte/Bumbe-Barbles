@@ -9,13 +9,14 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterStats))]
 public class CharacterInputManager : MonoBehaviour
 {
+    [SerializeField] Transform playerInputSpace = default;
     [SerializeField] Vector2 playerMoveInput;
     [SerializeField] Transform ball;
     Vector3 velocity, desiredVelocity;
     bool onGround;
     float minGroundDotProduct;
-    Vector3 contactNormal;
-    
+    Vector3 contactNormal, lastContactNormal;
+
 
     //dash stuff
     bool canDash
@@ -35,7 +36,7 @@ public class CharacterInputManager : MonoBehaviour
     //physics variables
     private float currentSpeed;
     Vector3 lastposition;
-    
+
 
 
 
@@ -65,32 +66,14 @@ public class CharacterInputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      
 
-       
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        //// count down timers
-        //dashTimer -= Time.deltaTime;
-        //attackTimer -= Time.deltaTime;
-
-        ////keep track of current speed
-        //currentSpeed = (transform.position - lastposition).magnitude / Time.deltaTime;
-        //lastposition = transform.position;
-
-        ////keep track of vertical and horizontal inputs 
-        ////(values range from [-1, 1]. For example, S in WASD will return a -1, W would return the opposite)
-        //horizontalInput = Input.GetAxis("Horizontal" + stats.playerNumber);
-        //verticalInput = Input.GetAxis("Vertical" + stats.playerNumber);
-
-
-        ////apply's torque to the ball based on inputs
-        //rBody.AddForce(new Vector3(horizontalInput, 0, verticalInput) * stats.moveForce * Time.deltaTime);
-
-
         ////if player presses the space bar
         //if (Input.GetButton("Fire" + stats.playerNumber))
         //{
@@ -110,6 +93,14 @@ public class CharacterInputManager : MonoBehaviour
         //{
         //    stats.isAttacking = false;
         //}
+
+        InputHandler(stats.playerNumber);
+        AnimateBall();
+    }
+
+    private void FixedUpdate()
+    {
+        PhysicsHandler();
     }
 
     void InputHandler(int playerNum)
@@ -118,8 +109,11 @@ public class CharacterInputManager : MonoBehaviour
         playerMoveInput.y = Input.GetAxis("Vertical" + playerNum);
         playerMoveInput = Vector2.ClampMagnitude(playerMoveInput, 1f);
 
-         velocity = new Vector3();
-         desiredVelocity = new Vector3(playerMoveInput.x, 0f, playerMoveInput.y) * stats.maxSpeed;
+        if (playerInputSpace)
+            desiredVelocity = playerInputSpace.TransformDirection(playerMoveInput.x, 0, playerMoveInput.y) * stats.maxSpeed;
+        else
+            desiredVelocity = new Vector3(playerMoveInput.x, 0f, playerMoveInput.y) * stats.maxSpeed;
+        
     }
 
     void PhysicsHandler()
@@ -155,7 +149,7 @@ public class CharacterInputManager : MonoBehaviour
 
     void EvaluateCollision(Collision collision)
     {
-        for(int i = 0; i < collision.contactCount; i++)
+        for (int i = 0; i < collision.contactCount; i++)
         {
             Vector3 normal = collision.GetContact(i).normal;
             if (normal.y >= minGroundDotProduct)
@@ -171,12 +165,46 @@ public class CharacterInputManager : MonoBehaviour
         minGroundDotProduct = Mathf.Cos(stats.maxGroundAngle * Mathf.Deg2Rad);
     }
 
+    void ClearState()
+    {
+        lastContactNormal = contactNormal;
+    }
+
     void AnimateBall()
     {
         Vector3 movement = rBody.velocity * Time.deltaTime;
         float distance = movement.magnitude;
+        if (distance < 0.001f)
+            return;
         float angle = distance * (180f / Mathf.PI) / stats.ballRadius;
 
-        ball.localRotation *= Quaternion.Euler(Vector3.right * angle);
+        Vector3 rotationAxis = Vector3.Cross(lastContactNormal, movement).normalized;
+
+        Quaternion rotation = Quaternion.Euler(rotationAxis * angle) * ball.rotation;
+
+        if (stats.ballAlignSpeed > 0f)
+            rotation = AlignBallRotation(rotationAxis, rotation, distance);
+
+        ball.localRotation = rotation;
+    }
+    Quaternion AlignBallRotation(Vector3 rotationAxis, Quaternion rotation, float traveledDistance)
+    {
+        Vector3 ballAxis = ball.up;
+        float dot = Mathf.Clamp(Vector3.Dot(ballAxis, rotationAxis), -1f, 1f);
+        float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+        float maxAngle = stats.ballAlignSpeed * traveledDistance;
+
+        Quaternion newAlignment =
+            Quaternion.FromToRotation(ballAxis, rotationAxis) * rotation;
+        if (angle <= maxAngle)
+        {
+            return newAlignment;
+        }
+        else
+        {
+            return Quaternion.SlerpUnclamped(
+                rotation, newAlignment, maxAngle / angle
+            );
+        }
     }
 }

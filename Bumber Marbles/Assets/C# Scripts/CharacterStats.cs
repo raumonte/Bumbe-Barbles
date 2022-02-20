@@ -11,8 +11,9 @@ public class CharacterStats : MonoBehaviour
     public float jumpHeight = 2f;
     public float maxGroundAngle = 25f;
     public float ballRadius = 0.5f;
-    [Tooltip("The amount torque applied to the ball")]
-    public float moveForce = 100;
+    public float ballAlignSpeed = 180f;
+    public float maxTurnSpeed = 15f;
+   
     [Tooltip("The amount of force applied to the ball when dashing")]
     public float dashForce = 100;
     [Tooltip("Movement speed of the pumpkin")]
