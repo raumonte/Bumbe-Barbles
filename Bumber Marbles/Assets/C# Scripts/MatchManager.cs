@@ -9,6 +9,7 @@ public class MatchManager : MonoBehaviour
     public List<CharacterStats> currentPlayers = new List<CharacterStats>();
     public List<Pickup> currentPickup = new List<Pickup>();
     public List<PickupSpawner> pickupSpawners = new List<PickupSpawner>();
+    
 
     [SerializeField] CameraManager cameraManager;
 
@@ -28,15 +29,17 @@ public class MatchManager : MonoBehaviour
 
     private void OnEnable()
     {
+        
+    }
+    private void Start()
+    {
         for (int i = 0; i < GameManager.instance.startingNumOfPlayers; i++)
         {
             playerSpawners[i].SpawnPlayer(GameManager.instance.playerPreb, i + 1);
         }
-    }
-    private void Start()
-    {
-        
-      
+
+
+
     }
 
     public void CheckWin()

@@ -22,10 +22,10 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-
-    public void Update()
+    public void UpdateScreen()
     {
-        switch(cameras.Count)
+        Debug.Log("Screen updated");
+        switch (cameras.Count)
         {
             case 2:
                 cameras[0].rect = new Rect(0, 0, 0.5f, 1f);
@@ -43,6 +43,10 @@ public class CameraManager : MonoBehaviour
                 cameras[3].rect = new Rect(0.5f, 0, 0.5f, 0.5f);
                 break;
         }
+    }
+    public void Update()
+    {
+       
         
     }
 
