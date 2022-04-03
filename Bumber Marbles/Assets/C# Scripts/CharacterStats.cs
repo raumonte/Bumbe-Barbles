@@ -18,13 +18,7 @@ public class CharacterStats : MonoBehaviour
     public float dashForce = 100;
     [Tooltip("Movement speed of the pumpkin")]
     public float pumpkinMoveSpeed;
-
-    [Header("Ball Physics Settings:")]
-    [Tooltip("The amount of drag applied to the ball to help it stop moving. 0 - infinity")]
-    public float drag = 1;
-    [Tooltip("The mass of the ball")]
     public float mass = 1;
-
     [Header("Player Stats")]
     [Tooltip("The starting health of a player")]
     public float startingHealth = 100;
@@ -49,7 +43,7 @@ public class CharacterStats : MonoBehaviour
     public GameObject marble;
     public GameObject pumpkin;
     public List<Material> marblePhasesMaterials = new List<Material>();
-    private MeshRenderer meshRenderer;
+    [SerializeField] private MeshRenderer meshRenderer;
 
     Rigidbody rgbd;
 
@@ -60,12 +54,9 @@ public class CharacterStats : MonoBehaviour
         rgbd = GetComponent<Rigidbody>();
         //set stats
         currentHealth = startingHealth;
-        rgbd.drag = drag;
-        rgbd.mass = mass;
         state = playerState.MarbleForm;
 
         MatchManager.instance.currentPlayers.Add(this);
-        meshRenderer = marble.GetComponent<MeshRenderer>();
         meshRenderer.material.SetColor("_Color", colors[playerNumber-1]);
 
         

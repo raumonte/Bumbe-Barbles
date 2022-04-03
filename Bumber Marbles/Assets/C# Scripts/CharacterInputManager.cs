@@ -17,6 +17,7 @@ public class CharacterInputManager : MonoBehaviour
     float minGroundDotProduct;
     Vector3 contactNormal, lastContactNormal;
 
+    bool desiredJump;
 
     //dash stuff
     bool canDash
@@ -56,9 +57,7 @@ public class CharacterInputManager : MonoBehaviour
         //intialize the timers
         dashTimer = stats.dashCooldownTime;
 
-        //set ball physic stats
-        rBody.drag = stats.drag;
-        rBody.mass = stats.mass;
+     
 
         OnValidate();
     }
@@ -74,25 +73,18 @@ public class CharacterInputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ////if player presses the space bar
-        //if (Input.GetButton("Fire" + stats.playerNumber))
-        //{
-        //    ("This is the player" + stats.playerNumber + " controller");
-        //    //if the dash timer = 0
-        //    if (canDash)
-        //    {
-        //        stats.isAttacking = true;
-        //        attackTimer = stats.attackTime;
-        //        //dash and reset timer
-        //        rBody.AddForce(new Vector3(horizontalInput, 0, verticalInput) * stats.dashForce);
-        //        dashTimer = stats.dashCooldownTime;
-        //    }
-        //}
+        if(velocity.magnitude >= (stats.maxSpeed* 0.6))
+        {
+            stats.isAttacking = true;
+        }
+        else
+        {
+            stats.isAttacking = false;
+        }
 
-        //if(attackTimer < 0)
-        //{
-        //    stats.isAttacking = false;
-        //}
+        Debug.Log("Velocity magnitude: " + velocity.magnitude + "\nDesiredVelocity Magnitude: " + desiredVelocity.magnitude);
+        
+        // Jump button;
 
         InputHandler(stats.playerNumber);
         UpdateBall();
@@ -100,6 +92,7 @@ public class CharacterInputManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        UpdateState();
         PhysicsHandler();
     }
 
@@ -118,24 +111,38 @@ public class CharacterInputManager : MonoBehaviour
 
     void PhysicsHandler()
     {
-        rBody.velocity = velocity;
-
-        float acceleration = onGround ? stats.maxAcceleration : stats.maxAirAcceleration;
-        float maxSpeedChange = acceleration * Time.deltaTime;
-
-        velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
-        velocity.z = Mathf.MoveTowards(velocity.z, desiredVelocity.z, maxSpeedChange);
+        AdjustVelocity();
 
         rBody.velocity = velocity;
 
-        onGround = false;
         ClearState();
 
     }
 
+    void UpdateState()
+    {
+        velocity = rBody.velocity;
+        if(onGround)
+        {
+            contactNormal.Normalize();
+        }
+        else
+        {
+            contactNormal = Vector3.up;
+        }
+    }
     void Jump()
     {
-        velocity += Mathf.Sqrt(-2 * Physics.gravity.y * stats.jumpHeight) * contactNormal;
+        if (onGround)
+        {
+            float jumpspeed = Mathf.Sqrt(-2 * Physics.gravity.y * stats.jumpHeight);
+            float alignedSpeed = Vector3.Dot(velocity, contactNormal);
+            if(alignedSpeed> 0f)
+            {
+                jumpspeed = Mathf.Max(jumpspeed - alignedSpeed, 0f);
+            }
+            velocity.y += jumpspeed;
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -168,6 +175,7 @@ public class CharacterInputManager : MonoBehaviour
 
     void ClearState()
     {
+        onGround = false;
         lastContactNormal = contactNormal;
     }
 
@@ -209,5 +217,29 @@ public class CharacterInputManager : MonoBehaviour
                 rotation, newAlignment, maxAngle / angle
             );
         }
+    }
+
+    Vector3 ProjectOnContactPlane(Vector3 vector)
+    {
+        return vector - contactNormal * Vector3.Dot(vector, contactNormal);
+    }
+
+    void AdjustVelocity()
+    {
+        Vector3 xAxis = ProjectOnContactPlane(Vector3.right).normalized;
+        Vector3 zAxis = ProjectOnContactPlane(Vector3.forward).normalized;
+
+        float currentX = Vector3.Dot(velocity, xAxis);
+        float currentZ = Vector3.Dot(velocity, zAxis);
+
+        float acceleration = onGround ? stats.maxAcceleration :stats.maxAirAcceleration;
+        float maxSpeedChange = acceleration * Time.deltaTime;
+
+        float newX =
+            Mathf.MoveTowards(currentX, desiredVelocity.x, maxSpeedChange);
+        float newZ =
+            Mathf.MoveTowards(currentZ, desiredVelocity.z, maxSpeedChange);
+
+        velocity += xAxis * (newX - currentX) + zAxis * (newZ - currentZ);
     }
 }
