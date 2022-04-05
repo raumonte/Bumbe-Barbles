@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   focus: {fileID: 0}
+  particleSystem: {fileID: 0}
   distance: 20
   focusRadius: 1
   focusCentering: 0.5

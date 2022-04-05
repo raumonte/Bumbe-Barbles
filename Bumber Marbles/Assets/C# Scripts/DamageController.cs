@@ -42,7 +42,9 @@ public class DamageController : MonoBehaviour
             {
                 if(stats.state == CharacterStats.playerState.pumpkinForm)
                 {
+                  
                     Destroy(this.gameObject);
+
                 }
 
                 stats.currentHealth -= stats.mass * gameObject.GetComponent<Rigidbody>().velocity.magnitude * Mathf.Clamp(Vector3.Dot(collision.gameObject.GetComponent<Rigidbody>().velocity, gameObject.GetComponent<Rigidbody>().velocity), 0, 1);
@@ -54,4 +56,6 @@ public class DamageController : MonoBehaviour
         }
 
     }
+
+
 }

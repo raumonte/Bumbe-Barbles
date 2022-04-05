@@ -468,6 +468,21 @@ PrefabInstance:
       propertyPath: focus
       value: 
       objectReference: {fileID: 1831299108}
+    - target: {fileID: 7800920391080574453, guid: dd18ae3daf50a8745aed4744e3457617,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7800920391080574453, guid: dd18ae3daf50a8745aed4744e3457617,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 7800920391080574453, guid: dd18ae3daf50a8745aed4744e3457617,
+        type: 3}
+      propertyPath: ShapeModule.type
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd18ae3daf50a8745aed4744e3457617, type: 3}
 --- !u!1 &1527644232

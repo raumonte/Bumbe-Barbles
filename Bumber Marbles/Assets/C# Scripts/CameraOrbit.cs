@@ -6,6 +6,8 @@ public class CameraOrbit : MonoBehaviour
 
 	public Transform focus;
 
+	public ParticleSystem particleSystem;
+
 	[SerializeField, Range(1f, 20f)]
 	float distance = 5f;
 
@@ -30,6 +32,8 @@ public class CameraOrbit : MonoBehaviour
 	[SerializeField]
 	LayerMask obstructionMask = -1;
 
+	[SerializeField]
+	int playerNum = 0;
 	Camera regularCamera;
 
 	Vector3 focusPoint, previousFocusPoint;
@@ -65,6 +69,7 @@ public class CameraOrbit : MonoBehaviour
 		regularCamera = GetComponent<Camera>();
 		focusPoint = focus.position;
 		transform.localRotation = Quaternion.Euler(orbitAngles);
+		playerNum = focus.GetComponent<CharacterStats>().playerNumber;
 	}
 
 	void LateUpdate()
@@ -130,9 +135,9 @@ public class CameraOrbit : MonoBehaviour
 	bool ManualRotation()
 	{
 		Vector2 input = new Vector2(
-			Input.GetAxis("Vertical12"),
-			Input.GetAxis("Horizontal12")
-		);
+			Input.GetAxis("Vertical" + playerNum + "2"),
+			Input.GetAxis("Horizontal" + playerNum + "2")
+		) ;
 		const float e = 0.001f;
 		if (input.x < -e || input.x > e || input.y < -e || input.y > e)
 		{

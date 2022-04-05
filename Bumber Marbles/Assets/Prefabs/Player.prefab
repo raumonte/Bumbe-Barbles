@@ -67,8 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53da64b1238a1cd4d9178dadcd6746c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 30
-  maxAcceleration: 10
+  maxSpeed: 60
+  maxAcceleration: 20
   maxAirAcceleration: 1
   bounciness: 0.5
   jumpHeight: 2
@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInputSpace: {fileID: 0}
+  particleSystem: {fileID: 0}
   playerMoveInput: {x: 0, y: 0}
   ball: {fileID: 8920067599446998322}
 --- !u!114 &3331097737513799938

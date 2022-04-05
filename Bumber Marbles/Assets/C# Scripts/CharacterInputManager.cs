@@ -10,6 +10,7 @@ using UnityEngine;
 public class CharacterInputManager : MonoBehaviour
 {
     public Transform playerInputSpace = default;
+    public ParticleSystem particleSystem;
     [SerializeField] Vector2 playerMoveInput;
     [SerializeField] Transform ball;
     Vector3 velocity, desiredVelocity;
@@ -76,9 +77,11 @@ public class CharacterInputManager : MonoBehaviour
         if(velocity.magnitude >= (stats.maxSpeed* 0.6))
         {
             stats.isAttacking = true;
+            particleSystem.Play();
         }
         else
         {
+            particleSystem.Stop();
             stats.isAttacking = false;
         }
 

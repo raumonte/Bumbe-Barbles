@@ -53,6 +53,6 @@ public class MatchManager : MonoBehaviour
 
     public void OnWin()
     {
-        SceneLoader.instance.LoadScene("EndScreen");
+        SceneLoader.instance.LoadScene("End Screen");
     }
 }
