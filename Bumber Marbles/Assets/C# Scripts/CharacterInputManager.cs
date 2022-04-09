@@ -77,11 +77,9 @@ public class CharacterInputManager : MonoBehaviour
         if(velocity.magnitude >= (stats.maxSpeed* 0.6))
         {
             stats.isAttacking = true;
-            particleSystem.Play();
         }
         else
         {
-            particleSystem.Stop();
             stats.isAttacking = false;
         }
 

@@ -125,7 +125,6 @@ public class CharacterStats : MonoBehaviour
     private void OnDestroy()
     {
         MatchManager.instance.currentPlayers.Remove(this);
-        MatchManager.instance.CheckWin();
     }
 
 }

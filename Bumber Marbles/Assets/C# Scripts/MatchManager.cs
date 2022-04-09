@@ -10,6 +10,7 @@ public class MatchManager : MonoBehaviour
     public List<Pickup> currentPickup = new List<Pickup>();
     public List<PickupSpawner> pickupSpawners = new List<PickupSpawner>();
     
+   
 
     [SerializeField] CameraManager cameraManager;
 

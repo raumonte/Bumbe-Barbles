@@ -131,6 +131,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugObject: {fileID: 0}
+  explosionForce: 500
+  KnockbackRadius: 5
 --- !u!114 &4887828547267848266
 MonoBehaviour:
   m_ObjectHideFlags: 0

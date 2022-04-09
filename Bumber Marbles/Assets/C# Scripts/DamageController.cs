@@ -6,9 +6,16 @@ public class DamageController : MonoBehaviour
 {
     public GameObject debugObject;
     private CharacterStats stats;
+    Rigidbody rBody;
+    [SerializeField]
+    float explosionForce = 500;
+    [SerializeField]
+    float KnockbackRadius = 1;
+  
     private void Start()
     {
         stats = GetComponent<CharacterStats>();
+        rBody = GetComponent<Rigidbody>();
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -29,6 +36,7 @@ public class DamageController : MonoBehaviour
         {
             if (otherCharacterStats.state == CharacterStats.playerState.pumpkinForm)
             {
+                MatchManager.instance.CheckWin();
                 Destroy(otherCharacterStats.gameObject);
             }
 
@@ -42,7 +50,7 @@ public class DamageController : MonoBehaviour
             {
                 if(stats.state == CharacterStats.playerState.pumpkinForm)
                 {
-                  
+                    MatchManager.instance.CheckWin();
                     Destroy(this.gameObject);
 
                 }
@@ -54,7 +62,9 @@ public class DamageController : MonoBehaviour
                 }
             }
         }
+        ContactPoint contactPoint = collision.contacts[0];
 
+        rBody.AddExplosionForce(500, contactPoint.point, KnockbackRadius);
     }
 
 
